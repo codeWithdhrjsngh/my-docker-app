@@ -2,7 +2,7 @@ pipeline{
     agent any
 
     environment {
-        IMAGE_NAME = 'my-docker-jenkins-app'
+        IMAGE_NAME = 'myDockerApp'
         DOCKERHUB_USER = 'imdhrjsngh'
         DOCKERHUB_CREDENTIALS_ID = 'dckr_pat_UJcExv_j5f7PM81uiMQoFKmndOE'
     }
@@ -14,7 +14,15 @@ pipeline{
             }
         }
 
-        stage('Build Docker Container'){
+        stage('Build Docker Image'){
+            steps{
+                script {
+                    dockerImage = docker.build("${IMAGE_NAME}")
+                }
+            }
+        }
+
+        stage('Run Container'){
             steps{
                 script {
                     dockerImage.run("-d -p 5000:5000")
@@ -23,6 +31,9 @@ pipeline{
         }
 
         stage('Push to DockerHub'){
+            when {
+                expression { return env.DOCKERHUB_USER != null }
+            }
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/' , "${DOCKERHUB_CREDENTIALS_ID}") {
