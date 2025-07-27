@@ -35,7 +35,7 @@ pipeline{
             }
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/' , 'docker-hub-credentials-id') {
+                    docker.withRegistry('https://index.docker.io/v1/' , 'dockerHub-credentials-id') {
                      dockerImage.push("latest")
                     }
                 }
