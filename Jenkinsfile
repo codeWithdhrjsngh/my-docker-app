@@ -3,8 +3,8 @@ pipeline{
 
     environment {
         IMAGE_NAME = 'my-docker-jenkins-app'
-        DOCKERHUB_USER = 'your_dockerhub_username'
-        DOCKERHUB_CREDENTIALS_ID = 'docker-hub-credentials-id'
+        DOCKERHUB_USER = 'imdhrjsngh'
+        DOCKERHUB_CREDENTIALS_ID = 'dckr_pat_UJcExv_j5f7PM81uiMQoFKmndOE'
     }
 
     stages{
