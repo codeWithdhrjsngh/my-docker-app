@@ -4,6 +4,7 @@ pipeline{
     environment {
         IMAGE_NAME = 'myDockerApp'
         DOCKERHUB_USER = 'imdhrjsngh'
+        DOCKERHUB_CREDENTIALS_ID = 'dckr_pat_UJcExv_j5f7PM81uiMQoFKmndOE'
     }
 
     stages{
