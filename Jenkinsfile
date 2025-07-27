@@ -4,7 +4,6 @@ pipeline{
     environment {
         IMAGE_NAME = 'myDockerApp'
         DOCKERHUB_USER = 'imdhrjsngh'
-        DOCKERHUB_CREDENTIALS_ID = 'dckr_pat_UJcExv_j5f7PM81uiMQoFKmndOE'
     }
 
     stages{
@@ -36,7 +35,7 @@ pipeline{
             }
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/' , "${DOCKERHUB_CREDENTIALS_ID}") {
+                    docker.withRegistry('https://index.docker.io/v1/' , 'docker-hub-credentials-id') {
                      dockerImage.push("latest")
                     }
                 }
