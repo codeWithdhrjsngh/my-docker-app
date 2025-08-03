@@ -3,14 +3,12 @@ pipeline{
 
     environment {
         IMAGE_NAME = 'myDockerApp'
-        DOCKERHUB_USER = 'imdhrjsngh'
-        DOCKERHUB_CREDENTIALS_ID = 'dckr_pat_UJcExv_j5f7PM81uiMQoFKmndOE'
     }
 
     stages{
         stage('Clone Repository'){
             steps{
-                git 'https://github.com/codeWithdhrjsngh/my-docker-app.git'
+                git credentialsId: 'github-credentials', url: 'https://github.com/codeWithdhrjsngh/my-docker-app.git'
             }
         }
 
@@ -36,7 +34,7 @@ pipeline{
             }
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/' , 'dockerHub-credentials-id') {
+                    docker.withRegistry('https://index.docker.io/v1/' , 'dockerhub-credentials') {
                      dockerImage.push("latest")
                     }
                 }
@@ -56,4 +54,5 @@ pipeline{
     }
 }
 }
+
 
