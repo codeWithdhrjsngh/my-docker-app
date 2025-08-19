@@ -8,7 +8,8 @@ pipeline{
     stages{
         stage('Clone Repository'){
             steps{
-                git credentialsId: 'github-credentials', url: 'https://github.com/codeWithdhrjsngh/my-docker-app.git'
+                git branch: 'main', url: 'https://github.com/codeWithdhrjsngh/my-docker-app.git', credentialsId: 'github-credentials'
+
             }
         }
 
@@ -54,6 +55,7 @@ pipeline{
     }
 }
 }
+
 
 
 
