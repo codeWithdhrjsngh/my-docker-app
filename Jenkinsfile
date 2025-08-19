@@ -1,5 +1,5 @@
 pipeline{
-    agent {
+    agent any {
         docker {
             image 'docker:20.10'   // official Docker CLI image
             args '-v /var/run/docker.sock:/var/run/docker.sock'
@@ -57,6 +57,7 @@ pipeline{
     }
 }
 }
+
 
 
 
