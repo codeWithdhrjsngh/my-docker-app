@@ -1,6 +1,12 @@
 pipeline{
-    agent any
-
+  //  agent any
+    agent {
+        docker {
+            image 'docker:20.10'    // official docker CLI image
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
+    
     environment {
         IMAGE_NAME = 'myDockerApp'
         CONTAINER_NAME = 'myDockerApp_container'
@@ -63,5 +69,6 @@ pipeline{
     }
   }
 }
+
 
 
