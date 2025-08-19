@@ -1,6 +1,11 @@
 pipeline{
-    agent any
-
+    agent {
+        docker {
+            image 'docker:20.10'   // official Docker CLI image
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
+    
     environment {
         IMAGE_NAME = 'myDockerApp'
     }
@@ -20,11 +25,9 @@ pipeline{
         }
 
 
-        stage('Run Container'){
-            steps{
-                script {
-                    dockerImage.run("-d -p 5000:5000")
-                }
+        stage('Run Container') {
+            steps {
+                sh 'docker run -d -p 5000:5000 --name ${IMAGE_NAME}_container ${IMAGE_NAME}:latest'
             }
         }
 
@@ -54,6 +57,7 @@ pipeline{
     }
 }
 }
+
 
 
 
