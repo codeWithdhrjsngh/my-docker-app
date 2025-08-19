@@ -13,13 +13,12 @@ pipeline{
             }
         }
 
-        stage('Build Docker Image'){
-            steps{
-                script {
-                    dockerImage = docker.build("${IMAGE_NAME}")
-                }
-            }
+        stage('Build Docker Image') {
+        steps {
+            sh 'docker build -t ${IMAGE_NAME}:latest .'
+             }
         }
+
 
         stage('Run Container'){
             steps{
@@ -55,5 +54,6 @@ pipeline{
     }
 }
 }
+
 
 
